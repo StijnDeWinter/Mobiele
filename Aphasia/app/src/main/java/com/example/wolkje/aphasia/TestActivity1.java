@@ -1,4 +1,4 @@
-package com.example.gijs.mobieleaphasia;
+package com.example.wolkje.aphasia;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

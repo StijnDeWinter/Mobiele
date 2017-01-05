@@ -30,6 +30,20 @@ public class QuestionMaker  {
     }
     /*
     * Method to evoke when a new list question of specific type needs to be generated
+    *
+    * Type1
+    * The patient is shown a picture (e.g. a candle) and is expected to say out loud what he sees (e.g. "candle!").
+    * The app should record this and make it possible for researchers to easily access this data.
+    *
+    * Type2
+    * The patient is shown a series of pictures (e.g. an ear, a hand, an arm and a finger).
+    * The app lets the patient hear a word (e.g. "hand").
+    * The patient is then expected to pick the corresponding icon.
+    *
+    * Type3
+    * The patient is shown a sentence describing a scenario and has to pick the picture that best matches it.
+    *
+    *
     * */
 
     private ArrayList<Question> generateQuestionList(String type, int... a){
@@ -75,7 +89,7 @@ public class QuestionMaker  {
                 question = bufferedReader.readLine() != null ? bufferedReader.readLine() : "Question not found.";
 
                 /*Counting amount of possible answers*/
-                File[] files = new File("Data/Type1/Question" + i).listFiles();
+                /*File[] files = new File("Data/Type1/Question" + i).listFiles();
                 int amountFiles = 0;
                 for (File file : files) { //is safe way of counting amount of possible answers. files.lenght - 1 works too (for now)
                     String name = file.getName();
@@ -84,18 +98,18 @@ public class QuestionMaker  {
                     }
                 }
 
-                /*setting the correct answer*/
+                *//*setting the correct answer*//*
                 answer = ("Data/Type1/Vraag" + i + "/answer0");
 
-                /*adding bogus answers, randomly selected from the map*/
+                *//*adding bogus answers, randomly selected from the map*//*
                 possibleAnswers = new ArrayList<>(4);
                 ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
                 for (int j = 0; j < amountFiles; j++){
                     tempAnswers.add("Data/Type1/Question" + i + "/answer" + j);
                 }
-                addThreeRandomAnswers(tempAnswers);
+                addThreeRandomAnswers(tempAnswers);*/
 
-                Question question1 = new Type1Question(question, answer, possibleAnswers);
+                Question question1 = new Type1Question(question);
                 questions.add(question1);
 
             } catch (IOException ex){
@@ -218,12 +232,3 @@ public class QuestionMaker  {
 
 
 }
-
-
-
-
-/*images zijn altijd strings
-* kunnen niet meegegeven worden met intent --> image nooit laden, enkel in views
-* imageposities in view zijn random voor de view, beslist door model
-* naam gekozen image moet doorgegeven worden aan model, die controleert juistheid
-* */

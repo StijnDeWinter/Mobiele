@@ -1,4 +1,4 @@
-package com.example.gijs.mobieleaphasia;
+package com.example.wolkje.aphasia;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

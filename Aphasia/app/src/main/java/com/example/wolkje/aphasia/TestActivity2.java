@@ -1,4 +1,4 @@
-package com.example.gijs.mobieleaphasia;
+package com.example.wolkje.aphasia;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +21,6 @@ public class TestActivity2 extends AppCompatActivity {
         setContentView(R.layout.test2);
 
         pictures = (ListView) findViewById(R.id.image_list);
-        pictures.setAdapter(new PictureListAdapter(TestActivity2.this,picturesID));
+        pictures.setAdapter(new com.example.wolkje.aphasia.PictureListAdapter(TestActivity2.this,picturesID));
     }
 }

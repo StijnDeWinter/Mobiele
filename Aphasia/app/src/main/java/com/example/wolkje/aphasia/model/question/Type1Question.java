@@ -10,7 +10,23 @@ import java.util.ArrayList;
  */
 
 public class Type1Question extends Question {
+
+    private String question;
+
     public Type1Question(String question, String answer, ArrayList<String> possibleAnswers) {
         super(question, answer, possibleAnswers);
     }
+    public Type1Question(String question){
+        super(null, null, null);
+        this.question = question;
+    }
 }
+
+
+
+
+/*Questioning -->
+*   -HashMap<Question, GivenAnswer>
+*
+* Person -->
+*   -ArrayList<HashMap<Question, GivenAnswer>>*/
