@@ -8,10 +8,46 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.wolkje.aphasia.MainActivity">
+    tools:context="com.example.gijs.mobieleaphasia.MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Welcome to the aphasia testing application.Below you will find 3 types of test:\r\n\r\n
+1) The patient is shown a picture (e.g. a candle) and is expected to say out loud what he sees (e.g. candle!).
+The app should record this and make it possible for researchers to easily access this data.\r\n\r\n
+2) The patient is shown a series of pictures (e.g. an ear, a hand, an arm and a finger).
+The app lets the patient hear a word (e.g. hand). The patient is then expected to pick the corresponding icon.\r\n\r\n
+3) The patient is shown a sentence describing a scenario and has to pick the picture that best matches it."
+        android:id="@+id/textView" />
+
+    <Button
+        android:text="Test 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTest1"
+        android:layout_alignBaseline="@+id/btnTest2"
+        android:layout_alignBottom="@+id/btnTest2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Test 2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTest2"
+        android:layout_alignBaseline="@+id/btnTest3"
+        android:layout_alignBottom="@+id/btnTest3"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:text="Test 3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnTest3"
+        android:layout_marginTop="59dp"
+        android:layout_below="@id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
+
