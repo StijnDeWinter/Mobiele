@@ -10,4 +10,23 @@ public class Type3Question extends Question {
     public Type3Question(String question, String answer, ArrayList<String> possibleAnswers) {
         super(question, answer, possibleAnswers);
     }
+
+
+    @Override
+    public String getType() {
+        return "type3";
+    }
+
+
+    public String getAnswer() {
+        return super.getAnswer();
+    }
+
+    public ArrayList<String> getPossibleAnswers() {
+        return super.getPossibleAnswers();
+    }
+
+    public String getQuestion() {
+        return super.getQuestion();
+    }
 }

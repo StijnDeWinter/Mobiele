@@ -25,6 +25,13 @@ public class Questioning {
         this.patientName = patientName;
     }
 
+    public HashMap<Question, String> getAskedQuestions(){
+        return askedQuestions;
+    }
+
+    public String getPatientName(){
+        return patientName;
+    }
     public void addQuestion(Question question, String givenAnswer){
         if(question != null && question instanceof Question){
             if(givenAnswer != null && !givenAnswer.equals("")){

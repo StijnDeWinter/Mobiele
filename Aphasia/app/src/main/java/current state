@@ -1,0 +1,46 @@
+Stuff that still needs to happen:
+-it's impossible to enter a patientname at the moment
+    -method "addListenerOnButton()" in "MainActivity.java" needs to be changed for this
+-when a test is completed it needs to be written away to a file
+-every time data on completed questionings are requested, they should be read from the file containing that data
+-way to order all the completed questionings in the file system
+
+option:
+
+#number of questionings?
+questioning0
+    type
+	date
+	patientName
+		question
+		answer0
+		answer1
+		answer2
+		answer3
+		givenAnswer
+		question
+		answer0
+		answer1
+		answer2
+		answer3
+		givenAnswer
+
+
+questioning1
+    type
+	date
+	patientName
+		question
+		answer0
+		answer1
+		answer2
+		answer3
+		givenAnswer
+
+
+
+
+
+
+
+

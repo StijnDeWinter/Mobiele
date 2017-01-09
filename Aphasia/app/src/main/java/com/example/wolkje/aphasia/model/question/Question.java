@@ -8,6 +8,19 @@ import java.util.ArrayList;
 
 public abstract class Question {
     private String question;
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public ArrayList<String> getPossibleAnswers() {
+        return possibleAnswers;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
     private String answer;
     private ArrayList<String> possibleAnswers; //also contains answer
 
@@ -16,4 +29,10 @@ public abstract class Question {
         this.answer = answer;
         this.possibleAnswers = possibleAnswers;
     }
+
+    public String getType(){
+        return null;
+    }
+
+
 }

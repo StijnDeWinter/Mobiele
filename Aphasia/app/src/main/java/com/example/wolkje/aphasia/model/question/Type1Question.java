@@ -11,13 +11,27 @@ import java.util.ArrayList;
 
 public class Type1Question extends Question {
 
-    private String question;
-
     public Type1Question(String question, String answer, ArrayList<String> possibleAnswers) {
         super(question, answer, possibleAnswers);
     }
     public Type1Question(String question){
-        super(null, null, null);
-        this.question = question;
+        super(question, null, null);
+    }
+
+    @Override
+    public String getType() {
+        return "type1";
+    }
+
+    public String getAnswer() {
+        return super.getAnswer();
+    }
+
+    public ArrayList<String> getPossibleAnswers() {
+        return super.getPossibleAnswers();
+    }
+
+    public String getQuestion() {
+        return super.getQuestion();
     }
 }
