@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:menu="http://schemas.android.com/apk/res-auto">
+<item
+    android:id="@+id/reset"
+    android:title="Reset"
+    menu:showAsAction="ifRoom" />
+<item
+    android:id="@+id/exit"
+    android:title="Exit"
+    menu:showAsAction="ifRoom" />
+</menu>

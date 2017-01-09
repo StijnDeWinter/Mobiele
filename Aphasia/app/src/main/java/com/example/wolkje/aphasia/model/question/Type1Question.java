@@ -21,12 +21,3 @@ public class Type1Question extends Question {
         this.question = question;
     }
 }
-
-
-
-
-/*Questioning -->
-*   -HashMap<Question, GivenAnswer>
-*
-* Person -->
-*   -ArrayList<HashMap<Question, GivenAnswer>>*/

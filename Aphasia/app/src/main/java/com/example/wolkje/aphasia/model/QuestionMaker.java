@@ -46,19 +46,17 @@ public class QuestionMaker  {
     *
     * */
 
-    private ArrayList<Question> generateQuestionList(String type, int... a){
+    public ArrayList<Question> generateQuestionList(String type, int a){
         ArrayList<Question> questions;
-        //if a doesn't exist, value is set to 10
-        int a1 = a.length > 0 ? a[0] : 10;
-        switch (type){
+        switch (type.replaceAll("\\s","")){  //strips any spaces, tabs and commas from the string
             case "type1":
-                questions = generateType1Questions(a1);
+                questions = generateType1Questions(a);
                 break;
             case "type2":
-                questions = generateType2Questions(a1);
+                questions = generateType2Questions(a);
                 break;
             case "type3":
-                questions = generateType3Questions(a1);
+                questions = generateType3Questions(a);
                 break;
             default:
                 questions = null;
