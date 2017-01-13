@@ -1,38 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/image_list"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:layout_marginBottom="20dp"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/TextViewType2Question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Kiekeboe!"
+        android:textSize="36sp" />
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="30dp">
+        android:orientation="vertical"
+        android:paddingBottom="20dp">
 
-        <Button
-            android:text="Play"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnPlay" />
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:text="Next"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnNext" />
 
-        <Button
-            android:text="Previous"
-            android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/answerButtonType2Option1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="Click to choose option 1!"
+                android:scaleType="fitCenter"
+                android:src="@drawable/candy" />
+
+
+            <ImageButton
+                android:id="@+id/answerButtonType2Option2"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="Click to choose option 2!"
+                android:scaleType="fitCenter"
+                android:src="@drawable/type2question1answer0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnPrevious" />
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/answerButtonType2Option3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="Click to choose option 3!"
+                android:scaleType="fitCenter"
+                android:src="@drawable/type2question1answer2" />
+
+            <ImageButton
+                android:id="@+id/answerButtonType2Option4"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="Click to choose option 4!"
+                android:scaleType="fitCenter"
+                android:src="@drawable/type2question1answer3" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

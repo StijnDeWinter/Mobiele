@@ -4,12 +4,19 @@ import android.content.Context;
 
 import com.example.wolkje.aphasia.model.question.Question;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
 /**
  * Created by Wolkje on 9/01/2017 at 14:59.
  * Part of com.example.wolkje.aphasia.model.
+ *
+ *
+ *  TO DO: questionings moet nog steeds ingelezen worden
+ *
+ *
+ *
  */
 
 public class Manager {
@@ -25,7 +32,7 @@ public class Manager {
     }
 
 
-    public ArrayList<Question> generateQuestionList(String type, int... amount) {
+    public ArrayList<Question> generateQuestionList(String type, int... amount) throws IOException {
         /*
         * if a doesn't exist, value is set to 10
         * is never actually used, but seemed logical to implement it at the time

@@ -1,18 +1,17 @@
 package com.example.wolkje.aphasia.model;
 
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import com.example.wolkje.aphasia.model.question.Question;
 import com.example.wolkje.aphasia.model.question.Type1Question;
 import com.example.wolkje.aphasia.model.question.Type2Question;
-import com.example.wolkje.aphasia.model.question.Type3Question;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -23,14 +22,30 @@ import static android.content.ContentValues.TAG;
  * Part of ${PACKAGE_NAME}.
  */
 
-public class QuestionMaker {
+class QuestionMaker {
 
     private Context context;
 
-    public QuestionMaker(Context context) {
+    QuestionMaker(Context context) {
         this.context = context;
 
     }
+
+
+    /* Checks if external storage is available for read and write */
+    private boolean isExternalStorageWritable() throws IOException {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        } else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            throw new IOException("Can't write to SD card --> questionings can't be saved.");
+            //should never occur
+        } else {
+            throw new IOException("Can't read SD card --> can't make questionings.");
+        }
+    }
+
+    ArrayList<Question> generateQuestionList(String type, int a) throws IOException {
     /*
     * Method to evoke when a new list question of specific type needs to be generated
     *
@@ -50,7 +65,7 @@ public class QuestionMaker {
     * to be separated and from a designing VP that's also the best approach, ergo.
     * */
 
-    public ArrayList<Question> generateQuestionList(String type, int a) {
+        isExternalStorageWritable();
         ArrayList<Question> questions;
         switch (type.replaceAll("\\s", "")) {  //strips any spaces, tabs and commas from the string
             case "type1":
@@ -74,114 +89,118 @@ public class QuestionMaker {
         ArrayList<Question> questions = new ArrayList<>(a);
 
         String question;
-        String answer;
-        ArrayList<String> possibleAnswers;
 
-        FileInputStream input;
-        InputStreamReader inputReader;
+        File sdcard = Environment.getExternalStorageDirectory();
+        StringBuilder questionBuilder = new StringBuilder();
         BufferedReader bufferedReader;
 
-        for (int i = 0; i < a; i++) {
+        for (int i = 1; i <= a; i++) {
             try {
 
                 /*Reading question from file*/
-                input = context.openFileInput("Data/Type1/Question" + i + "/question.txt");
-                inputReader = new InputStreamReader(input);
-                bufferedReader = new BufferedReader(inputReader);
-                question = bufferedReader.readLine() != null ? bufferedReader.readLine() : "Question not found.";
+                File questionfile = new File(sdcard + File.separator + "questions" + File.separator + "type1" + File.separator + "question" + i + File.separator, "question.txt");
+                try {
+                    bufferedReader = new BufferedReader(new FileReader(questionfile));
+                    questionBuilder.append(bufferedReader.readLine());
+                    bufferedReader.close();
+                    question = questionBuilder.toString();
 
-                /*Counting amount of possible answers*/
-                /*File[] files = new File("Data/Type1/Question" + i).listFiles();
-                int amountFiles = 0;
-                for (File file : files) { //is safe way of counting amount of possible answers. files.lenght - 1 works too (for now)
-                    String name = file.getName();
-                    if(name.endsWith(".jpg")){
-                        amountFiles++;
-                    }
+                    Question question1 = new Type1Question(question);
+                    questions.add(question1);
+                } catch (Exception e) {
+                    Log.d(TAG, "generateType1Questions: error while reading the file");
+                    e.printStackTrace();
                 }
-
-                *//*setting the correct answer*//*
-                answer = ("Data/Type1/Vraag" + i + "/answer0");
-
-                *//*adding bogus answers, randomly selected from the map*//*
-                possibleAnswers = new ArrayList<>(4);
-                ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
-                for (int j = 0; j < amountFiles; j++){
-                    tempAnswers.add("Data/Type1/Question" + i + "/answer" + j);
-                }
-                addThreeRandomAnswers(tempAnswers);*/
-
-                Question question1 = new Type1Question(question);
-                questions.add(question1);
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
             } catch (Exception exep) {
-                Log.d(TAG, "generateType1Questions: error occured");
+                Log.d(TAG, "generateType1Questions: problems finding the file on SD");
+                exep.printStackTrace();
             }
         }
         return questions;
     }
 
     private ArrayList<Question> generateType2Questions(int a) {
+        /*
+        * Tested, works.
+        * */
+
         ArrayList<Question> questions = new ArrayList<>(a);
 
-        String question;
-        String answer;
-        ArrayList<String> possibleAnswers;
+        String question = "";
+        String answer = "";
+        ArrayList<String> possibleAnswers = new ArrayList<>();
 
-        FileInputStream input;
-        InputStreamReader inputReader;
+        File sdcard = Environment.getExternalStorageDirectory();
+        StringBuilder questionBuilder = new StringBuilder();
         BufferedReader bufferedReader;
 
-        for (int i = 0; i < a; i++) {
+        for (int i = 1; i <= a; i++) {
+
             try {
 
                 /*Reading question from file*/
-                input = context.openFileInput("Data/Type2/Question" + i + "/question.txt");
-                inputReader = new InputStreamReader(input);
-                bufferedReader = new BufferedReader(inputReader);
-                question = bufferedReader.readLine() != null ? bufferedReader.readLine() : "Question not found.";
+                File questionfile = new File(sdcard + File.separator + "questions" + File.separator + "type2" + File.separator + "question" + i + File.separator, "question.txt");
+                try {
+                    bufferedReader = new BufferedReader(new FileReader(questionfile));
+                    questionBuilder.append(bufferedReader.readLine());
+                    bufferedReader.close();
+                    question = questionBuilder.toString();
+                } catch (Exception e) {
+                    Log.d(TAG, "generateType1Questions: error while reading the questionfile");
+                    e.printStackTrace();
+                }
+                try {
+                    answer = ("type2question" + i + "answer0");
+                } catch (Exception ex) {
+                    Log.d(TAG, "generateType2Questions: error while setting answerstring");
+                    ex.printStackTrace();
+                }
+                try {
+                    File[] files = new File(sdcard + File.separator + "questions" + File.separator + "type2" + File.separator + "question" + i + File.separator).listFiles();
+                    int amountFiles = 0;
+                    /*Counting amount of possible answers
+                    * is safe way of counting amount of possible answers. files.length - 1 works too
+                    * as the only other file in the map should be a .txt containing the question.
+                    * Going for the safe and "open" option here
+                    * */
 
-                /*Counting amount of possible answers*/
-                File[] files = new File("Data/Type2/Question" + i).listFiles();
-                int amountFiles = 0;
-                /*
-                * is safe way of counting amount of possible answers. files.length - 1 works too
-                * as the only other file in the map should be a .txt containing the question.
-                * Going for the safe and "open" option here
-                * */
-                for (File file : files) {
-                    String name = file.getName();
-                    if (name.endsWith(".jpg")) {
-                        amountFiles++;
+                    for (File file : files) {
+                        String name = file.getName();
+                        if (name.endsWith(".jpg")) {
+                            amountFiles++;
+                        }
                     }
+                 /*adding bogus answers, randomly selected from the map*/
+                    possibleAnswers = new ArrayList<>(4);
+                    ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
+                    for (int j = 0; j < amountFiles; j++) {
+                        tempAnswers.add("type2question" + i + "answer" + j);
+                    }
+                    ArrayList<String> tempList = addThreeRandomAnswers(tempAnswers);
+                    for (int k = 0; k < tempList.size(); k++) {
+                        possibleAnswers.add(tempList.get(k));
+                    }
+                } catch (Exception exe) {
+                    Log.d(TAG, "generateType2Questions: problem while setting bogus answers");
+                    exe.printStackTrace();
                 }
-
-                /*setting the correct answer*/
-                answer = ("Data/Type2/Question" + i + "/answer0");
-
-                /*adding bogus answers, randomly selected from the map*/
-                possibleAnswers = new ArrayList<>(4);
-                ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
-                for (int j = 0; j < amountFiles; j++) {
-                    tempAnswers.add("Data/Type2/Question" + i + "/answer" + j);
-                }
-                addThreeRandomAnswers(tempAnswers);
-
                 Question question1 = new Type2Question(question, answer, possibleAnswers);
                 questions.add(question1);
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
             } catch (Exception exep) {
-                Log.d(TAG, "generateType2Questions: error occured");
+                Log.d(TAG, "generateType1Questions: problems finding the file on SD");
+                exep.printStackTrace();
             }
         }
         return questions;
     }
 
     private ArrayList<Question> generateType3Questions(int a) {
+        
+        /*
+        * Not tested, unknown result.
+        * 
+        * */
+        
         /*
         * actually exactly the same as Type 2, but for the sake of easily editable code
         * it's copied in case something must change later on
@@ -191,56 +210,69 @@ public class QuestionMaker {
         * */
         ArrayList<Question> questions = new ArrayList<>(a);
 
-        String question;
-        String answer;
-        ArrayList<String> possibleAnswers;
+        String question = "";
+        String answer = "";
+        ArrayList<String> possibleAnswers = new ArrayList<>();
 
-        FileInputStream input;
-        InputStreamReader inputReader;
+        File sdcard = Environment.getExternalStorageDirectory();
+        StringBuilder questionBuilder = new StringBuilder();
         BufferedReader bufferedReader;
 
-        for (int i = 0; i < a; i++) {
+        for (int i = 1; i <= a; i++) {
+
             try {
 
                 /*Reading question from file*/
-                input = context.openFileInput("Data/Type3/Question" + i + "/question.txt");
-                inputReader = new InputStreamReader(input);
-                bufferedReader = new BufferedReader(inputReader);
-                question = bufferedReader.readLine() != null ? bufferedReader.readLine() : "Question not found.";
-
-                /*Counting amount of possible answers*/
-                File[] files = new File("Data/Type3/Question" + i).listFiles();
-                int amountFiles = 0;
-                /*
+                File questionfile = new File(sdcard + File.separator + "questions" + File.separator + "type3" + File.separator + "question" + i + File.separator, "question.txt");
+                try {
+                    bufferedReader = new BufferedReader(new FileReader(questionfile));
+                    questionBuilder.append(bufferedReader.readLine());
+                    bufferedReader.close();
+                    question = questionBuilder.toString();
+                } catch (Exception e) {
+                    Log.d(TAG, "generateType1Questions: error while reading the questionfile");
+                    e.printStackTrace();
+                }
+                try {
+                    answer = (sdcard + File.separator + "questions" + File.separator + "type3" + File.separator + "question" + i + File.separator + "type3question" + i + "answer0");/*Counting amount of possible answers*/
+                } catch (Exception ex) {
+                    Log.d(TAG, "generateType2Questions: error while setting answerstring");
+                    ex.printStackTrace();
+                }
+                try {
+                    File[] files = new File(sdcard + File.separator + "questions" + File.separator + "type3" + File.separator + "question" + i + File.separator).listFiles();
+                    int amountFiles = 0;
+                        /*
                 * is safe way of counting amount of possible answers. files.length - 1 works too
                 * as the only other file in the map should be a .txt containing the question.
                 * Going for the safe and "open" option here
                 * */
-                for (File file : files) {
-                    String name = file.getName();
-                    if (name.endsWith(".jpg")) {
-                        amountFiles++;
+
+                    for (File file : files) {
+                        String name = file.getName();
+                        if (name.endsWith(".jpg")) {
+                            amountFiles++;
+                        }
                     }
+                 /*adding bogus answers, randomly selected from the map*/
+                    possibleAnswers = new ArrayList<>(4);
+                    ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
+                    for (int j = 0; j < amountFiles; j++) {
+                        tempAnswers.add(sdcard + File.separator + "questions" + File.separator + "type3" + File.separator + "question" + i + File.separator + "type3question" + i + "answer" + j);
+                    }
+                    ArrayList<String> tempList = addThreeRandomAnswers(tempAnswers);
+                    for (int k = 0; k < tempList.size(); k++) {
+                        possibleAnswers.add(tempList.get(k));
+                    }
+                } catch (Exception exe) {
+                    Log.d(TAG, "generateType2Questions: problem while setting bogus answers");
+                    exe.printStackTrace();
                 }
-
-                /*setting the correct answer*/
-                answer = ("Data/Type3/Question" + i + "/answer0");
-
-                /*adding bogus answers, randomly selected from the map*/
-                possibleAnswers = new ArrayList<>(4);
-                ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
-                for (int j = 0; j < amountFiles; j++) {
-                    tempAnswers.add("Data/Type3/Question" + i + "/answer" + j);
-                }
-                addThreeRandomAnswers(tempAnswers);
-
-                Question question1 = new Type3Question(question, answer, possibleAnswers);
+                Question question1 = new Type2Question(question, answer, possibleAnswers);
                 questions.add(question1);
-
-            } catch (IOException ex) {
-                ex.printStackTrace();
             } catch (Exception exep) {
-                Log.d(TAG, "generateType3Questions: error occured");
+                Log.d(TAG, "generateType1Questions: problems finding the file on SD");
+                exep.printStackTrace();
             }
         }
         return questions;
@@ -248,11 +280,18 @@ public class QuestionMaker {
 
 
     private ArrayList<String> addThreeRandomAnswers(ArrayList<String> answers) {
-        ArrayList<String> clone = new ArrayList<>(answers);
-        clone = (ArrayList<String>) clone.subList(1, clone.size());
+        /*
+        *  Tested, works
+        * */
+        ArrayList<String> result = new ArrayList<>(4);
+        ArrayList<String> clone = new ArrayList<>(answers.subList(1, answers.size()));
         Collections.shuffle(clone);
-        clone.add(0, answers.get(0));
-        return clone;
+        for (int i = 0; i < clone.size(); i++) {
+            result.add(i, clone.get(i));
+        }
+        result.add(answers.get(0));
+        Collections.shuffle(result);
+        return result;
     }
 
 

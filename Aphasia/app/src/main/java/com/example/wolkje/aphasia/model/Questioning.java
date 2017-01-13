@@ -25,15 +25,15 @@ public class Questioning {
         this.patientName = patientName;
     }
 
-    public HashMap<Question, String> getAskedQuestions(){
+    HashMap<Question, String> getAskedQuestions() {
         return askedQuestions;
     }
 
-    public String getPatientName(){
+    String getPatientName() {
         return patientName;
     }
     public void addQuestion(Question question, String givenAnswer){
-        if(question != null && question instanceof Question){
+        if (question != null) {
             if(givenAnswer != null && !givenAnswer.equals("")){
                 askedQuestions.put(question, givenAnswer);                
             }
@@ -48,6 +48,10 @@ public class Questioning {
 
 
     public void markCompleted(){
+        /*
+        *  questioning needs to be saved here
+        *  if possible at level op the types.
+        * */
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
         Date date = new Date(System.currentTimeMillis());
         setDate(date);
