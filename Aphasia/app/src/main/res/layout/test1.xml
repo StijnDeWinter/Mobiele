@@ -30,25 +30,24 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/candy"
-            android:id="@+id/imageView" />
+            android:id="@+id/imageViewQuestion" />
 
         <EditText
             android:layout_width="250dp"
             android:layout_height="150dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:inputType="textPersonName"
             android:text=""
             android:ems="10"
-            android:id="@+id/editText" />
+            android:id="@+id/answerTextField" />
 
         <Button
             android:text="Next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout-marginTop="20dp"
-            android:id="@+id/button" />
+            android:id="@+id/buttonNextQuestion" />
     </LinearLayout>
 
 
