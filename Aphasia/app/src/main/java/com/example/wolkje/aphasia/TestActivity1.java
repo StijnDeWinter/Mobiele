@@ -18,10 +18,9 @@ import com.example.wolkje.aphasia.model.question.Question;
 
 import java.util.ArrayList;
 
-import static com.example.wolkje.aphasia.R.id.answerButtonType1Option1;
-import static com.example.wolkje.aphasia.R.id.answerButtonType1Option2;
-import static com.example.wolkje.aphasia.R.id.answerButtonType1Option3;
-import static com.example.wolkje.aphasia.R.id.answerButtonType1Option4;
+import static com.example.wolkje.aphasia.R.id.buttonNextQuestion;
+import static com.example.wolkje.aphasia.R.id.answerTextField;
+import static com.example.wolkje.aphasia.R.id.imageViewQuestion;
 
 /**
  * Created by gijs on 5/01/2017.
@@ -35,7 +34,7 @@ public class TestActivity1 extends AppCompatActivity {
     private TextView questionType1;
     private ImageView questionImage;
     private EditText answer;
-    private Button submit;
+    private Button submitAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +70,8 @@ public class TestActivity1 extends AppCompatActivity {
         * set the thing to display to the next question
         * */
         questionType1.setText(questions.get(currentPosition).getQuestion());
-        /*questionImage.*¨/
+        questionImage = (ImageView) findViewById(imageViewQuestion);
+        questionImage.setImageResource(getResources().getIdentifier("@drawable/candy.jpg", "drawable", getPackageName()));
     }
 
     private void addListenerOnButton() {
@@ -80,7 +80,21 @@ public class TestActivity1 extends AppCompatActivity {
         * currentPosition++
         * startQuestioning(currentPosition) if need be, else evoke end of activity
         * */
-
+        submitAnswer = (Button) findViewById(buttonNextQuestion);
+        answer = (EditText) findViewById(answerTextField);
+        submitAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                Toast.makeText(getApplicationContext(), "Proceeding...", Toast.LENGTH_LONG).show();
+                questioning.addQuestion(questions.get(currentPosition), answer.getText().toString());
+                currentPosition++;
+                if (currentPosition < questions.size()) {
+                    startQuestioning(currentPosition);
+                } else {
+                    endOfTest();
+                }
+            }
+        });
     }
 
     private void endOfTest() {

@@ -91,7 +91,6 @@ class QuestionMaker {
 
         String question = "";
         String answer = "";
-        ArrayList<String> possibleAnswers = new ArrayList<>();
 
         File sdcard = Environment.getExternalStorageDirectory();
         StringBuilder questionBuilder = new StringBuilder();
@@ -113,41 +112,12 @@ class QuestionMaker {
                     e.printStackTrace();
                 }
                 try {
-                    answer = ("type1question" + i + "answer0");
+                    answer = ("type1question" + i + "answer");
                 } catch (Exception ex) {
                     Log.d(TAG, "generateType2Questions: error while setting answerstring");
                     ex.printStackTrace();
                 }
-                try {
-                    File[] files = new File(sdcard + File.separator + "questions" + File.separator + "type1" + File.separator + "question" + i + File.separator).listFiles();
-                    int amountFiles = 0;
-                    /*Counting amount of possible answers
-                    * is safe way of counting amount of possible answers. files.length - 1 works too
-                    * as the only other file in the map should be a .txt containing the question.
-                    * Going for the safe and "open" option here
-                    * */
-
-                    for (File file : files) {
-                        String name = file.getName();
-                        if (name.endsWith(".jpg")) {
-                            amountFiles++;
-                        }
-                    }
-                 /*adding bogus answers, randomly selected from the map*/
-                    possibleAnswers = new ArrayList<>(4);
-                    ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
-                    for (int j = 0; j < amountFiles; j++) {
-                        tempAnswers.add("type1question" + i + "answer" + j);
-                    }
-                    ArrayList<String> tempList = addThreeRandomAnswers(tempAnswers);
-                    for (int k = 0; k < tempList.size(); k++) {
-                        possibleAnswers.add(tempList.get(k));
-                    }
-                } catch (Exception exe) {
-                    Log.d(TAG, "generateType2Questions: problem while setting bogus answers");
-                    exe.printStackTrace();
-                }
-                Question question1 = new Type1Question(question, answer, possibleAnswers);
+                Question question1 = new Type1Question(question, answer, null);
                 questions.add(question1);
             } catch (Exception exep) {
                 Log.d(TAG, "generateType1Questions: problems finding the file on SD");
