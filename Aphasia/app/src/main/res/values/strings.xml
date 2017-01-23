@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Aphasia</string>
+    <string name="type1question1">Wat ziet u?</string>
+    <string name="type1question2">Wat ziet u?</string>
+    <string name="type1question3">Wat ziet u?</string>
+    <string name="type1question4">Wat ziet u?</string>
+    <string name="type1question5">Wat ziet u?</string>
+
+    <string name="type2question1">basketball</string>
+    <string name="type2question2">blauw</string>
+    <string name="type2question3">herfst</string>
+    <string name="type2question4">oog</string>
+    <string name="type2question5">Android</string>
+
+
+        <string name="type3question1">Mensen gebruiken het om zich te verplaatsen. Het heeft 2 wielen en beweegt wanneer je op de trappers duwt. Wat zoeken we?</string>
+    <string name="type3question2">Het wordt gebruikt om de belangrijke tekst aan te duiden en komt voor in meerdere kleuren. Wat zoeken we?</string>
+    <string name="type3question3">Het leeft in water. Wat zoeken we?</string>
+    <string name="type3question4">Het past in de broek en wordt gebruikt om te communiceren met andere mensen. Wat zoeken we?</string>
+    <string name="type3question5">Het heeft een hoge ontwikkelingsgraad en een hoge bevolkingsgraad. Wat zoeken we?</string>
 </resources>

@@ -69,7 +69,8 @@ public class TestActivity1 extends AppCompatActivity {
         /*
         * set the thing to display to the next question
         * */
-        questionType1.setText(questions.get(currentPosition).getQuestion());
+//        questionType1.setText(questions.get(currentPosition).getQuestion());
+        questionType1.setText(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
         questionImage = (ImageView) findViewById(imageViewQuestion);
         questionImage.setImageResource(getResources().getIdentifier("@drawable/candy.jpg", "drawable", getPackageName()));
     }

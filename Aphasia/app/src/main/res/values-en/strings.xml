@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="type1question1">What is pictured below?</string>
+    <string name="type1question2">What is pictured below?</string>
+    <string name="type1question3">What is pictured below?</string>
+    <string name="type1question4">What is pictured below?</string>
+    <string name="type1question5">What is pictured below?</string>
+
+    <string name="type2question1">basketball</string>
+    <string name="type2question2">blue</string>
+    <string name="type2question3">autumn</string>
+    <string name="type2question4">eye</string>
+    <string name="type2question5">Android</string>
+
+    <string name="type3question1">People use it to move around. It has 2 wheels and moves when you kick the pedals.
+What are we looking for?</string>
+    <string name="type3question2">It is used when you want to highlight something on paper or in a book.
+It can be done with different colors.
+What are we looking for?</string>
+    <string name="type3question3">We are searching for an animal that lives in water.
+What are we looking for?</string>
+    <string name="type3question4">We are looking for a pocket-size device. It is used for communicating with people. What are we looking for?</string>
+    <string name="type3question5">We are looking for a highly civilized area with a dense population. What are we looking for?</string>
+</resources>

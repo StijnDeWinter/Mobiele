@@ -68,7 +68,8 @@ public class TestActivity2 extends AppCompatActivity {
         /*
         * sets the buttons to display to the next question and images
         * */
-        questionType2.setText(questions.get(currentPosition).getQuestion());
+//        questionType2.setText(questions.get(currentPosition).getQuestion());
+        questionType2.setText(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
         buttonType2Option1.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(0), "drawable", getPackageName()));
         buttonType2Option2.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(1), "drawable", getPackageName()));
         buttonType2Option3.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(2), "drawable", getPackageName()));

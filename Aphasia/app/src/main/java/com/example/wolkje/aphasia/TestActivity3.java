@@ -71,7 +71,8 @@ class TestActivity3 {
         /*
         * sets the buttons to display to the next question and images
         * */
-            questionType3.setText(questions.get(currentPosition).getQuestion());
+//            questionType3.setText(questions.get(currentPosition).getQuestion());
+            questionType3.setText(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
             buttonType3Option1.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(0), "drawable", getPackageName()));
             buttonType3Option2.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(1), "drawable", getPackageName()));
             buttonType3Option3.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(2), "drawable", getPackageName()));
