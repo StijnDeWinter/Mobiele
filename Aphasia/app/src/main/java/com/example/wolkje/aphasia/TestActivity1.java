@@ -51,7 +51,7 @@ public class TestActivity1 extends AppCompatActivity {
             * is currently at 1, but should be 10 in the current design of the app
             * is at 1 since lazy ass Gijs didn't make any questions yet
             * */
-            questions = new Manager(getApplicationContext()).generateQuestionList("type1", 1);
+            questions = new Manager(getApplicationContext()).generateQuestionList("type1", 5);
         } catch (Exception e) {
             Log.d("error: ", "onCreate: " + e.getMessage());
         }
@@ -72,7 +72,7 @@ public class TestActivity1 extends AppCompatActivity {
 //        questionType1.setText(questions.get(currentPosition).getQuestion());
         questionType1.setText(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
         questionImage = (ImageView) findViewById(imageViewQuestion);
-        questionImage.setImageResource(getResources().getIdentifier("@drawable/candy.jpg", "drawable", getPackageName()));
+        questionImage.setImageResource(getResources().getIdentifier("@drawable/type1question" + (currentPosition + 1) + "photo", "drawable", getPackageName()));
     }
 
     private void addListenerOnButton() {

@@ -51,7 +51,7 @@ public class TestActivity2 extends AppCompatActivity {
             * is currently at 1, but should be 10 in the current design of the app
             * is at 1 since lazy ass Gijs didn't make any questions yet
             * */
-            questions = new Manager(getApplicationContext()).generateQuestionList("type2", 1);
+            questions = new Manager(getApplicationContext()).generateQuestionList("type2", 5);
         } catch (Exception e) {
             Log.d("error: ", "onCreate: " + e.getMessage());
         }

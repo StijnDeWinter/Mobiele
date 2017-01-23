@@ -54,7 +54,7 @@ class TestActivity3 {
             * is currently at 1, but should be 10 in the current design of the app
             * is at 1 since lazy ass Gijs didn't make any questions yet
             * */
-                questions = new Manager(getApplicationContext()).generateQuestionList("type3", 1);
+                questions = new Manager(getApplicationContext()).generateQuestionList("type3", 5);
             } catch (Exception e) {
                 Log.d("error: ", "onCreate: " + e.getMessage());
             }
