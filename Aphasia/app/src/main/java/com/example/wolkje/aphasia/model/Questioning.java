@@ -70,13 +70,13 @@ public class Questioning {
         int amountOfFiles = 0;
         for (File file : writeLocation.listFiles()){
             String fileName = file.getName();
-            if (fileName.endsWith(".txt")){
+            if (fileName.contains(patientName)){
                 amountOfFiles++;
             }
         }
 
         try{
-            File newFile = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questionings" + File.separator + "questioning" + (amountOfFiles + 1) + ".txt");
+            File newFile = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questionings" + File.separator + patientName.replaceAll("\\s", "") + (amountOfFiles + 1) + ".txt");
             newFile.createNewFile();
             PrintWriter writer = new PrintWriter(new FileOutputStream(newFile));
 

@@ -45,18 +45,13 @@ public class TestActivity2 extends AppCompatActivity {
         questioning = new Questioning(getIntent().getExtras().getString("name"));
         addListenerOnButton();
 
+
         currentPosition = 0;
         try {
-            /*
-            * is currently at 1, but should be 10 in the current design of the app
-            * is at 1 since lazy ass Gijs didn't make any questions yet
-            * */
             questions = new Manager(getApplicationContext()).generateQuestionList("type2", 5);
         } catch (Exception e) {
             Log.d("error: ", "onCreate: " + e.getMessage());
         }
-        /*pictures = (ListView) findViewById(R.id.image_list);
-        pictures.setAdapter(new com.example.wolkje.aphasia.PictureListAdapter(TestActivity2.this, picturesID));*/
     }
 
     protected void onStart() {
@@ -69,6 +64,8 @@ public class TestActivity2 extends AppCompatActivity {
         * sets the buttons to display to the next question and images
         * */
 //        questionType2.setText(questions.get(currentPosition).getQuestion());
+        Log.d("testactivity2 ", "startQuestioning: getQuestion = " + questions.get(currentPosition).getQuestion());
+        Log.d("testactivity3 ", "startQuestioning: possible answer 1 = " + questions.get(currentPosition).getPossibleAnswers().get(0));
         questionType2.setText(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
         buttonType2Option1.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(0), "drawable", getPackageName()));
         buttonType2Option2.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(1), "drawable", getPackageName()));
@@ -89,6 +86,7 @@ public class TestActivity2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Selected option 1, proceeding", Toast.LENGTH_LONG).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(0));
                 currentPosition++;
+                Log.d("addListenerOnButton", "onClick: currentposition: = " + currentPosition);
                 if (currentPosition < questions.size()) {
                     startQuestioning(currentPosition);
                 } else {
@@ -103,7 +101,7 @@ public class TestActivity2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Selected option 2, proceeding", Toast.LENGTH_LONG).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(1));
                 currentPosition++;
-                if (currentPosition < 1) {
+                if (currentPosition < questions.size()) {
                     startQuestioning(currentPosition);
                 } else {
                     endOfTest();
@@ -117,7 +115,7 @@ public class TestActivity2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Selected option 3, proceeding", Toast.LENGTH_LONG).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(2));
                 currentPosition++;
-                if (currentPosition < 1) {
+                if (currentPosition < questions.size()) {
                     startQuestioning(currentPosition);
                 } else {
                     endOfTest();
@@ -131,7 +129,7 @@ public class TestActivity2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Selected option 4, proceeding", Toast.LENGTH_LONG).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(3));
                 currentPosition++;
-                if (currentPosition < 1) {
+                if (currentPosition < questions.size()) {
                     startQuestioning(currentPosition);
                 } else {
                     endOfTest();

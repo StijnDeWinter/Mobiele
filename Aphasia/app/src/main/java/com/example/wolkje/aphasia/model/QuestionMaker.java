@@ -155,6 +155,7 @@ class QuestionMaker {
                     questionBuilder.append(bufferedReader.readLine());
                     bufferedReader.close();
                     question = questionBuilder.toString();
+                    questionBuilder.setLength(0);
                 } catch (Exception e) {
                     Log.d(TAG, "generateType1Questions: error while reading the questionfile");
                     e.printStackTrace();
@@ -239,6 +240,7 @@ class QuestionMaker {
                     questionBuilder.append(bufferedReader.readLine());
                     bufferedReader.close();
                     question = questionBuilder.toString();
+                    questionBuilder.setLength(0);
                 } catch (Exception e) {
                     Log.d(TAG, "generateType1Questions: error while reading the questionfile");
                     e.printStackTrace();
@@ -268,7 +270,7 @@ class QuestionMaker {
                     possibleAnswers = new ArrayList<>(4);
                     ArrayList<String> tempAnswers = new ArrayList<>(amountFiles);
                     for (int j = 0; j < amountFiles; j++) {
-                        tempAnswers.add(sdcard + File.separator + "questions" + File.separator + "type3" + File.separator + "question" + i + File.separator + "type3question" + i + "answer" + j);
+                        tempAnswers.add("type3question" + i + "answer" + j);
                     }
                     ArrayList<String> tempList = addThreeRandomAnswers(tempAnswers);
                     for (int k = 0; k < tempList.size(); k++) {

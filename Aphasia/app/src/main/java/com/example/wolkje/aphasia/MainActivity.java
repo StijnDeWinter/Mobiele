@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                             * needs to be changed to the actual name of the patient
                                * */
                             intent.putExtra("name", patient);
+                            Log.d("kiekeboe", "onClick: stap 1");
                             startActivityForResult(intent, TEST_TYPE_2);
                         }
                     });

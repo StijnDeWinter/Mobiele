@@ -40,23 +40,17 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
         protected void onCreate(Bundle savedInstanceState) {
 
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.test2);
+            setContentView(R.layout.test3);
             questionType3 = (TextView) findViewById(R.id.TextViewType3Question);
             questioning = new Questioning(getIntent().getExtras().getString("name"));
             addListenerOnButton();
 
             currentPosition = 0;
             try {
-            /*
-            * is currently at 1, but should be 10 in the current design of the app
-            * is at 1 since lazy ass Gijs didn't make any questions yet
-            * */
                 questions = new Manager(getApplicationContext()).generateQuestionList("type3", 5);
             } catch (Exception e) {
                 Log.d("error: ", "onCreate: " + e.getMessage());
             }
-        /*pictures = (ListView) findViewById(R.id.image_list);
-        pictures.setAdapter(new com.example.wolkje.aphasia.PictureListAdapter(TestActivity2.this, picturesID));*/
         }
 
         protected void onStart() {
@@ -69,6 +63,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
         * sets the buttons to display to the next question and images
         * */
 //            questionType3.setText(questions.get(currentPosition).getQuestion());
+            Log.d("testactivity3 ", "startQuestioning: possible answer 1 = " + questions.get(currentPosition).getPossibleAnswers().get(0));
             questionType3.setText(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
             buttonType3Option1.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(0), "drawable", getPackageName()));
             buttonType3Option2.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(1), "drawable", getPackageName()));
@@ -103,7 +98,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
                     Toast.makeText(getApplicationContext(), "Selected option 2, proceeding...", Toast.LENGTH_LONG).show();
                     questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(1));
                     currentPosition++;
-                    if (currentPosition < 1) {
+                    if (currentPosition < questions.size()) {
                         startQuestioning(currentPosition);
                     } else {
                         endOfTest();
@@ -117,7 +112,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
                     Toast.makeText(getApplicationContext(), "Selected option 3, proceeding...", Toast.LENGTH_LONG).show();
                     questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(2));
                     currentPosition++;
-                    if (currentPosition < 1) {
+                    if (currentPosition < questions.size()) {
                         startQuestioning(currentPosition);
                     } else {
                         endOfTest();
@@ -131,7 +126,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
                     Toast.makeText(getApplicationContext(), "Selected option 4, proceeding...", Toast.LENGTH_LONG).show();
                     questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(3));
                     currentPosition++;
-                    if (currentPosition < 1) {
+                    if (currentPosition < questions.size()) {
                         startQuestioning(currentPosition);
                     } else {
                         endOfTest();
