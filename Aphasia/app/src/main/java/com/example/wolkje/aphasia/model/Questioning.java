@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
@@ -30,7 +31,7 @@ public class Questioning {
     private String type;
 
     public Questioning(String patientName){
-        askedQuestions = new HashMap<>();
+        askedQuestions = new LinkedHashMap<>();
         this.patientName = patientName;
     }
 
@@ -45,7 +46,7 @@ public class Questioning {
         if (question != null) {
             if(givenAnswer != null && !givenAnswer.equals("")){
                 askedQuestions.put(question, givenAnswer);
-                type = question.getQuestion().substring(0, 4);
+                type = question.getQuestion().substring(0, 5);
             }
             else {
                 Log.d(TAG, "addQuestion: something wrong with the given answer");
@@ -75,18 +76,19 @@ public class Questioning {
         }
 
         try{
-            File newFile = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questioning" + (amountOfFiles + 1) + ".txt");
+            File newFile = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questionings" + File.separator + "questioning" + (amountOfFiles + 1) + ".txt");
             newFile.createNewFile();
-            FileWriter fWriter = new FileWriter(newFile);
-            PrintWriter writer = new PrintWriter(fWriter);
+            PrintWriter writer = new PrintWriter(new FileOutputStream(newFile));
 
             writer.println(type);
             writer.println(patientName);
             writer.println(date);
             for (Map.Entry<Question, String> question : getAskedQuestions().entrySet()){
                 writer.println(question.getKey().getQuestion());
-                for (int i = 0; i < question.getKey().getPossibleAnswers().size(); i++){
-                    writer.println(question.getKey().getPossibleAnswers().get(i));
+                if(question.getKey().getPossibleAnswers()!= null && question.getKey().getPossibleAnswers().size() > 0) {
+                    for (int i = 0; i < question.getKey().getPossibleAnswers().size(); i++) {
+                        writer.println(question.getKey().getPossibleAnswers().get(i));
+                    }
                 }
                 writer.println(question.getValue());
             }

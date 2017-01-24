@@ -92,6 +92,7 @@ public class TestActivity1 extends AppCompatActivity {
                 currentPosition++;
                 if (currentPosition < questions.size()) {
                     startQuestioning(currentPosition);
+                    answer.setText("");
                 } else {
                     endOfTest();
                 }
