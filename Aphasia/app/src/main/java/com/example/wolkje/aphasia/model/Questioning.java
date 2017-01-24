@@ -75,7 +75,7 @@ public class Questioning {
         }
 
         try{
-            File newFile = new File(Environment.getExternalStorageDirectory() + File.separator + "questioning" + (amountOfFiles + 1) + ".txt");
+            File newFile = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questioning" + (amountOfFiles + 1) + ".txt");
             newFile.createNewFile();
             FileWriter fWriter = new FileWriter(newFile);
             PrintWriter writer = new PrintWriter(fWriter);
