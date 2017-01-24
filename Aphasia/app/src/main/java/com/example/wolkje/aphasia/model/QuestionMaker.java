@@ -107,6 +107,7 @@ class QuestionMaker {
                     questionBuilder.append(bufferedReader.readLine());
                     bufferedReader.close();
                     question = questionBuilder.toString();
+                    questionBuilder.setLength(0);
                 } catch (Exception e) {
                     Log.d(TAG, "generateType1Questions: error while reading the questionfile");
                     e.printStackTrace();
@@ -118,6 +119,7 @@ class QuestionMaker {
                     ex.printStackTrace();
                 }
                 Question question1 = new Type1Question(question, answer, null);
+                Log.d(TAG, "generateType1Questions: " + question);
                 questions.add(question1);
             } catch (Exception exep) {
                 Log.d(TAG, "generateType1Questions: problems finding the file on SD");
