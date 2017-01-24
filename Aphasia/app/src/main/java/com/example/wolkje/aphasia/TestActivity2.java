@@ -74,18 +74,18 @@ public class TestActivity2 extends AppCompatActivity {
     }
 
     private void startQuestioning(int currentPosition) {
-        /*
-        * sets the buttons to display to the next question and images
-        * */
-//        questionType2.setText(questions.get(currentPosition).getQuestion());
-        Log.d("testactivity2 ", "startQuestioning: getQuestion = " + questions.get(currentPosition).getQuestion());
-        Log.d("testactivity3 ", "startQuestioning: possible answer 1 = " + questions.get(currentPosition).getPossibleAnswers().get(0));
+        buttonType2Option1.destroyDrawingCache();
+        buttonType2Option2.destroyDrawingCache();
+        buttonType2Option3.destroyDrawingCache();
+        buttonType2Option4.destroyDrawingCache();
         questionType2.setText(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
         buttonType2Option1.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(0), "drawable", getPackageName()));
         buttonType2Option2.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(1), "drawable", getPackageName()));
         buttonType2Option3.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(2), "drawable", getPackageName()));
         buttonType2Option4.setImageResource(getResources().getIdentifier("@drawable/" + questions.get(currentPosition).getPossibleAnswers().get(3), "drawable", getPackageName()));
     }
+
+
 
     private void addListenerOnButton() {
         /*
@@ -97,7 +97,7 @@ public class TestActivity2 extends AppCompatActivity {
         buttonType2Option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Toast.makeText(getApplicationContext(), "Selected option 1, proceeding", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Selected option 1, proceeding", Toast.LENGTH_SHORT).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(0));
                 currentPosition++;
                 Log.d("addListenerOnButton", "onClick: currentposition: = " + currentPosition);
@@ -112,7 +112,7 @@ public class TestActivity2 extends AppCompatActivity {
         buttonType2Option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Toast.makeText(getApplicationContext(), "Selected option 2, proceeding", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Selected option 2, proceeding", Toast.LENGTH_SHORT).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(1));
                 currentPosition++;
                 if (currentPosition < questions.size()) {
@@ -126,7 +126,7 @@ public class TestActivity2 extends AppCompatActivity {
         buttonType2Option3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Toast.makeText(getApplicationContext(), "Selected option 3, proceeding", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Selected option 3, proceeding", Toast.LENGTH_SHORT).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(2));
                 currentPosition++;
                 if (currentPosition < questions.size()) {
@@ -140,7 +140,7 @@ public class TestActivity2 extends AppCompatActivity {
         buttonType2Option4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Toast.makeText(getApplicationContext(), "Selected option 4, proceeding", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Selected option 4, proceeding", Toast.LENGTH_SHORT).show();
                 questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(3));
                 currentPosition++;
                 if (currentPosition < questions.size()) {

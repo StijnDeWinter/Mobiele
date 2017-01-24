@@ -25,6 +25,7 @@ import com.example.wolkje.aphasia.model.Manager;
 import com.example.wolkje.aphasia.model.Questioning;
 import com.example.wolkje.aphasia.model.question.Question;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -91,7 +92,7 @@ public class TestActivity1 extends AppCompatActivity {
             public void onClick(View view) {
                 if(checkPermission()) {
                     AudioSavePathInDevice =
-                            Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +
+                            Environment.getExternalStorageDirectory() + File.separator +
                                     CreateRandomAudioFileName(5) + "AudioRecording.3gp";
 
                     MediaRecorderReady();
