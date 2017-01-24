@@ -127,6 +127,7 @@ public class TestActivity1 extends AppCompatActivity {
             public void onClick(View view) {
                 mediaRecorder.stop();
                 stopRecording.setEnabled(false);
+                submitAnswer.setEnabled(true);
                 startRecording.setEnabled(true);
 
                 Toast.makeText(TestActivity1.this, "Recording Completed", Toast.LENGTH_LONG).show();
