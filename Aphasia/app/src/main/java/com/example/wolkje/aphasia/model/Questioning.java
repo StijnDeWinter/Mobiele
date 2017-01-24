@@ -66,11 +66,11 @@ public class Questioning {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
         Date date = new Date(System.currentTimeMillis());
         setDate(date);
-        File writeLocation = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator);
+        File writeLocation = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questionings");
         int amountOfFiles = 0;
         for (File file : writeLocation.listFiles()){
             String fileName = file.getName();
-            if (fileName.contains(patientName)){
+            if (fileName.contains(patientName.replaceAll("\\s", ""))){
                 amountOfFiles++;
             }
         }
@@ -80,17 +80,21 @@ public class Questioning {
             newFile.createNewFile();
             PrintWriter writer = new PrintWriter(new FileOutputStream(newFile));
 
-            writer.println(type);
-            writer.println(patientName);
-            writer.println(date);
+            writer.println("questiontype: " +type);
+            writer.println("patientname: " +patientName);
+            writer.println("timestamp completion: " +date);
             for (Map.Entry<Question, String> question : getAskedQuestions().entrySet()){
-                writer.println(question.getKey().getQuestion());
+                writer.println();
+                writer.println("question: " +question.getKey().getQuestion());
                 if(question.getKey().getPossibleAnswers()!= null && question.getKey().getPossibleAnswers().size() > 0) {
                     for (int i = 0; i < question.getKey().getPossibleAnswers().size(); i++) {
-                        writer.println(question.getKey().getPossibleAnswers().get(i));
+                        writer.println("possible answer " + (i+1) + ": " + question.getKey().getPossibleAnswers().get(i));
                     }
                 }
-                writer.println(question.getValue());
+                if(question.getKey().getAnswer() != null && !question.getKey().getAnswer().equals("")){
+                    writer.println("correct answer: " + question.getKey().getAnswer());
+                }
+                writer.println("given answer: " + question.getValue());
             }
             writer.flush();
             writer.close();
