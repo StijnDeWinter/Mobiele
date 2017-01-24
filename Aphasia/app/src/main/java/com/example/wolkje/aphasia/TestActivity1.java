@@ -71,6 +71,7 @@ public class TestActivity1 extends AppCompatActivity {
         startRecording = (Button) findViewById(R.id.buttonRecordAnswer);
         stopRecording = (Button) findViewById(R.id.buttonStopRecordAnswer);
         stopRecording.setEnabled(false);
+        submitAnswer.setEnabled(false);
         random = new Random();
 
 
@@ -109,6 +110,7 @@ public class TestActivity1 extends AppCompatActivity {
                     }
                     startRecording.setEnabled(false);
                     stopRecording.setEnabled(true);
+                    submitAnswer.setEnabled(true);
                     Toast.makeText(TestActivity1.this, "Recording started",
                             Toast.LENGTH_LONG).show();
                 } else {
@@ -165,6 +167,7 @@ public class TestActivity1 extends AppCompatActivity {
         submitAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                mediaRecorder.stop();
                 Toast.makeText(getApplicationContext(), "Proceeding...", Toast.LENGTH_LONG).show();
                 questioning.addQuestion(questions.get(currentPosition), answer.getText().toString());
                 currentPosition++;
