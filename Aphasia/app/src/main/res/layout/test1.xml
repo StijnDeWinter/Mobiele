@@ -44,10 +44,16 @@
             android:id="@+id/answerTextField" />
 
         <Button
+            android:text="Start recording"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonRecordAnswer" />
+        <Button
             android:text="Next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/buttonNextQuestion" />
+
     </LinearLayout>
 
 
