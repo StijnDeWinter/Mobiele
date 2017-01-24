@@ -2,9 +2,11 @@ package com.example.wolkje.aphasia;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,11 +16,13 @@ import com.example.wolkje.aphasia.model.Questioning;
 import com.example.wolkje.aphasia.model.question.Question;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static com.example.wolkje.aphasia.R.id.answerButtonType2Option1;
 import static com.example.wolkje.aphasia.R.id.answerButtonType2Option2;
 import static com.example.wolkje.aphasia.R.id.answerButtonType2Option3;
 import static com.example.wolkje.aphasia.R.id.answerButtonType2Option4;
+import static com.example.wolkje.aphasia.R.id.buttonPlayAudio;
 
 /**
  * Created by gijs on 5/01/2017.
@@ -34,6 +38,8 @@ public class TestActivity2 extends AppCompatActivity {
     private ImageButton buttonType2Option2;
     private ImageButton buttonType2Option3;
     private ImageButton buttonType2Option4;
+    TextToSpeech tts;
+    private Button audio;
 
 
     @Override
@@ -45,6 +51,14 @@ public class TestActivity2 extends AppCompatActivity {
         questioning = new Questioning(getIntent().getExtras().getString("name"));
         addListenerOnButton();
 
+        tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    tts.setLanguage(Locale.getDefault());
+                }
+            }
+        });
 
         currentPosition = 0;
         try {
@@ -137,6 +151,14 @@ public class TestActivity2 extends AppCompatActivity {
             }
         });
 
+        audio = (Button) findViewById(buttonPlayAudio);
+        audio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String toSpeak = getString(getResources().getIdentifier("@string/" + questions.get(currentPosition).getQuestion(), "string", getPackageName()));
+                tts.speak(toSpeak, TextToSpeech.QUEUE_FLUSH, null, null);
+            }
+        });
     }
 
     private void endOfTest() {
