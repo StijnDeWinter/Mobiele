@@ -24,10 +24,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
  * Created by Wolkje on 13/01/2017 at 17:56.
  * Part of com.example.wolkje.aphasia.
  */
-
-class TestActivity3 {
-
-    public class TestActivity2 extends AppCompatActivity {
+    public class TestActivity3 extends AppCompatActivity {
 
         private int currentPosition;
         private ArrayList<Question> questions;
@@ -154,5 +151,3 @@ class TestActivity3 {
 
     }
 
-
-}

@@ -248,40 +248,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void watchResults(){
 
-    /*private void startTestTypeOne(String patientName){
-        *//*
-        * parameter for amount of questions can be added but is out of scope
-        * *//*
-        ArrayList<Question> questions = manager.generateQuestionList("type1");
-        questioning = new Questioning(patientName);
-        for(int n = 0; n < 10; n++){
-            Intent intent = new Intent(getApplicationContext(), TestActivity1.class);
-            intent.putExtra("question", questions.get(n).getQuestion());
-            intent.putExtra("answer1", questions.get(n).getPossibleAnswers().get(0));
-            intent.putExtra("answer2", questions.get(n).getPossibleAnswers().get(1));
-            intent.putExtra("answer3", questions.get(n).getPossibleAnswers().get(2));
-            intent.putExtra("answer4", questions.get(n).getPossibleAnswers().get(3));
-            startActivityForResult(intent, REQUEST_ANSWER);
-        }
-
-
-    }*/
-
-
- /*   private void startTestTypeTwo() {
-        try {
-            ArrayList<Question> questions = manager.generateQuestionList("type2");
-            for (int n = 0; n < 10; n++) {
-
-            }
-            Intent intent = new Intent(getApplicationContext(), TestActivity1.class);
-            startActivity(intent);
-        } catch (Exception e) {
-            Log.d("error", "startTestTypeTwo: " + e.getMessage());
-        }
-    }*/
-
+    }
 
 
 }
