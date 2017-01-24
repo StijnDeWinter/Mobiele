@@ -155,7 +155,6 @@ class QuestionMaker {
                     questionBuilder.append(bufferedReader.readLine());
                     bufferedReader.close();
                     question = questionBuilder.toString();
-                    Log.d(TAG, "generateType2Questions: " + questionBuilder.toString());
                     questionBuilder.setLength(0);
                 } catch (Exception e) {
                     Log.d(TAG, "generateType1Questions: error while reading the questionfile");

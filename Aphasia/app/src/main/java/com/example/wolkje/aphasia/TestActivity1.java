@@ -93,7 +93,7 @@ public class TestActivity1 extends AppCompatActivity {
             public void onClick(View view) {
                 if(checkPermission()) {
                     AudioSavePathInDevice =
-                            Environment.getExternalStorageDirectory() + File.separator +
+                            Environment.getExternalStorageDirectory().getAbsolutePath() + "/questions/questionings/" +
                                     CreateRandomAudioFileName(5) + "AudioRecording.3gp";
 
                     MediaRecorderReady();
@@ -112,7 +112,7 @@ public class TestActivity1 extends AppCompatActivity {
                     stopRecording.setEnabled(true);
                     submitAnswer.setEnabled(true);
                     Toast.makeText(TestActivity1.this, "Recording started",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                 } else {
                     requestPermission();
                 }

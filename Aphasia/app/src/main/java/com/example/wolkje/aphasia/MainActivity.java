@@ -193,13 +193,13 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 case 1:
-                    Toast.makeText(getApplicationContext(), "Test type 1 has ended without errors.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Test type 1 has ended without errors.", Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
-                    Toast.makeText(getApplicationContext(), "Test type 2 has ended without errors.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Test type 2 has ended without errors.", Toast.LENGTH_SHORT).show();
                     break;
                 case 3:
-                    Toast.makeText(getApplicationContext(), "Test type 3 has ended without errors.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Test type 3 has ended without errors.", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     Log.d("MainActivity", "onActivityResult: something went wrong when handling ActivityResult");
