@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private final int TEST_TYPE_3 = 3;
     private Manager manager;
     private Questioning questioning;
+    private String patient;
 
     public boolean isStoragePermissionGranted() {
         if (Build.VERSION.SDK_INT >= 23) {
@@ -76,37 +79,106 @@ public class MainActivity extends AppCompatActivity {
             btnTest1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Toast.makeText(getApplicationContext(), "Starting a Type 1 test...", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), TestActivity1.class);
-                /*
-                * needs to be changed to the actual name of the patient
-                * */
-                    intent.putExtra("name", "tempName");
-                    startActivityForResult(intent, TEST_TYPE_1);
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                    dialog.setTitle("Name patient");
+                    dialog.setMessage("Fill in the name:");
+
+                    final EditText input = new EditText(MainActivity.this);
+                    input.setInputType(InputType.TYPE_CLASS_TEXT);
+                    dialog.setView(input);
+
+                    dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which){
+                            patient = input.getText().toString();
+                            Toast.makeText(getApplicationContext(), "Starting a Type 1 test...", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(), TestActivity1.class);
+                           /*
+                            * needs to be changed to the actual name of the patient
+                            * */
+                            intent.putExtra("name", patient);
+                            startActivityForResult(intent, TEST_TYPE_1);
+                        }
+                    });
+                    dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
+
                 }
             });
             btnTest2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Toast.makeText(getApplicationContext(), "Starting a Type 2 test...", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), TestActivity2.class);
-                /*
-                * needs to be changed to the actual name of the patient
-                * */
-                    intent.putExtra("name", "tempName");
-                    startActivityForResult(intent, TEST_TYPE_2);
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                    dialog.setTitle("Name patient");
+                    dialog.setMessage("Fill in the name:");
+
+                    final EditText input = new EditText(MainActivity.this);
+                    input.setInputType(InputType.TYPE_CLASS_TEXT);
+                    dialog.setView(input);
+
+                    dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            patient = input.getText().toString();
+                            Toast.makeText(getApplicationContext(), "Starting a Type 2 test...", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(), TestActivity2.class);
+                            /*
+                            * needs to be changed to the actual name of the patient
+                               * */
+                            intent.putExtra("name", patient);
+                            startActivityForResult(intent, TEST_TYPE_2);
+                        }
+                    });
+
+                    dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
                 }
             });
             btnTest3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Toast.makeText(getApplicationContext(), "Starting a Type 3 test...", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), TestActivity3.class);
-                /*
-                * needs to be changed to the actual name of the patient
-                * */
-                    intent.putExtra("name", "tempName");
-                    startActivityForResult(intent, TEST_TYPE_3);
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                    dialog.setTitle("Name patient");
+                    dialog.setMessage("Fill in the name:");
+
+                    final EditText input = new EditText(MainActivity.this);
+                    input.setInputType(InputType.TYPE_CLASS_TEXT);
+                    dialog.setView(input);
+
+                    dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            patient = input.getText().toString();
+                            Toast.makeText(getApplicationContext(), "Starting a Type 3 test...", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(), TestActivity3.class);
+                            /*
+                            * needs to be changed to the actual name of the patient
+                            * */
+                            intent.putExtra("name", patient);
+                            startActivityForResult(intent, TEST_TYPE_3);
+                        }
+                    });
+
+                    dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
                 }
             });
         } else {

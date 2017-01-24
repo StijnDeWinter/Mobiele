@@ -113,6 +113,7 @@ public class TestActivity1 extends AppCompatActivity {
         * currentPosition++
         * startQuestioning(currentPosition) if need be, else evoke end of activity
         * */
+
         submitAnswer = (Button) findViewById(buttonNextQuestion);
         answer = (EditText) findViewById(answerTextField);
         submitAnswer.setOnClickListener(new View.OnClickListener() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Aphasia</string>
     <string name="type1question1">What is pictured below?</string>
     <string name="type1question2">What is pictured below?</string>
     <string name="type1question3">What is pictured below?</string>
