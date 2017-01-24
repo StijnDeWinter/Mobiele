@@ -28,16 +28,14 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
             app:srcCompat="@drawable/candy"
             android:id="@+id/imageViewQuestion" />
 
         <EditText
             android:layout_width="250dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="75dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:inputType="textPersonName"
             android:text=""
             android:ems="10"
