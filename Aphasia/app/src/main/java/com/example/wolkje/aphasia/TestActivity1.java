@@ -70,6 +70,7 @@ public class TestActivity1 extends AppCompatActivity {
         questioning = new Questioning(getIntent().getExtras().getString("name"));
         startRecording = (Button) findViewById(R.id.buttonRecordAnswer);
         stopRecording = (Button) findViewById(R.id.buttonStopRecordAnswer);
+        submitAnswer = (Button) findViewById(buttonNextQuestion);
         stopRecording.setEnabled(false);
         submitAnswer.setEnabled(false);
         random = new Random();
@@ -110,7 +111,7 @@ public class TestActivity1 extends AppCompatActivity {
                     }
                     startRecording.setEnabled(false);
                     stopRecording.setEnabled(true);
-                    submitAnswer.setEnabled(true);
+                    submitAnswer.setEnabled(false);
                     Toast.makeText(TestActivity1.this, "Recording started",
                             Toast.LENGTH_SHORT).show();
                 } else {
@@ -126,8 +127,10 @@ public class TestActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mediaRecorder.stop();
+                mediaRecorder.reset();
+                mediaRecorder.release();
                 stopRecording.setEnabled(false);
-                submitAnswer.setEnabled(true);
+                submitAnswer.setEnabled(false);
                 startRecording.setEnabled(true);
 
                 Toast.makeText(TestActivity1.this, "Recording Completed", Toast.LENGTH_LONG).show();
@@ -162,13 +165,12 @@ public class TestActivity1 extends AppCompatActivity {
         * currentPosition++
         * startQuestioning(currentPosition) if need be, else evoke end of activity
         * */
-
-        submitAnswer = (Button) findViewById(buttonNextQuestion);
         answer = (EditText) findViewById(answerTextField);
         submitAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                mediaRecorder.stop();
+                startRecording.setEnabled(true);
+                submitAnswer.setEnabled(false);
                 Toast.makeText(getApplicationContext(), "Proceeding...", Toast.LENGTH_LONG).show();
                 questioning.addQuestion(questions.get(currentPosition), answer.getText().toString());
                 currentPosition++;
