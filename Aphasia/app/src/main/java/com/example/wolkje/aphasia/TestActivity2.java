@@ -164,7 +164,7 @@ public class TestActivity2 extends AppCompatActivity {
     private void endOfTest() {
         questioning.markCompleted();
         setResult(Activity.RESULT_OK, getIntent());
-        Toast.makeText(getApplicationContext(), "Test of type 2 ended, returning to home...", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Test of type 2 ended, returning to home...", Toast.LENGTH_SHORT).show();
         finish();
     }
 

@@ -81,7 +81,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
             buttonType3Option1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Toast.makeText(getApplicationContext(), "Selected option 1, proceeding...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Selected option 1, proceeding...", Toast.LENGTH_SHORT).show();
                     questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(0));
                     currentPosition++;
                     if (currentPosition < questions.size()) {
@@ -95,7 +95,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
             buttonType3Option2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Toast.makeText(getApplicationContext(), "Selected option 2, proceeding...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Selected option 2, proceeding...", Toast.LENGTH_SHORT).show();
                     questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(1));
                     currentPosition++;
                     if (currentPosition < questions.size()) {
@@ -109,7 +109,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
             buttonType3Option3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Toast.makeText(getApplicationContext(), "Selected option 3, proceeding...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Selected option 3, proceeding...", Toast.LENGTH_SHORT).show();
                     questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(2));
                     currentPosition++;
                     if (currentPosition < questions.size()) {
@@ -123,7 +123,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
             buttonType3Option4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View arg0) {
-                    Toast.makeText(getApplicationContext(), "Selected option 4, proceeding...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Selected option 4, proceeding...", Toast.LENGTH_SHORT).show();
                     questioning.addQuestion(questions.get(currentPosition), questions.get(currentPosition).getPossibleAnswers().get(3));
                     currentPosition++;
                     if (currentPosition < questions.size()) {
@@ -139,7 +139,7 @@ import static com.example.wolkje.aphasia.R.id.answerButtonType3Option4;
         private void endOfTest() {
             questioning.markCompleted();
             setResult(Activity.RESULT_OK, getIntent());
-            Toast.makeText(getApplicationContext(), "Test of type 3 ended, returning to home...", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Test of type 3 ended, returning to home...", Toast.LENGTH_SHORT).show();
             finish();
         }
 

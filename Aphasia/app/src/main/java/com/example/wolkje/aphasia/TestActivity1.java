@@ -1,22 +1,18 @@
 package com.example.wolkje.aphasia;
 
-import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,8 +28,8 @@ import java.util.Random;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static com.example.wolkje.aphasia.R.id.buttonNextQuestion;
 import static com.example.wolkje.aphasia.R.id.answerTextField;
+import static com.example.wolkje.aphasia.R.id.buttonNextQuestion;
 import static com.example.wolkje.aphasia.R.id.imageViewQuestion;
 
 /**
@@ -148,7 +144,7 @@ public class TestActivity1 extends AppCompatActivity {
                 submitAnswer.setEnabled(true);
                 startRecording.setEnabled(true);
 
-                Toast.makeText(TestActivity1.this, "Recording Completed", Toast.LENGTH_LONG).show();
+                Toast.makeText(TestActivity1.this, "Recording Completed", Toast.LENGTH_SHORT).show();
             }
         });
         /*pictures = (ListView) findViewById(R.id.image_list);
@@ -186,7 +182,7 @@ public class TestActivity1 extends AppCompatActivity {
             public void onClick(View arg0) {
                 startRecording.setEnabled(true);
                 submitAnswer.setEnabled(false);
-                Toast.makeText(getApplicationContext(), "Proceeding...", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Proceeding...", Toast.LENGTH_SHORT).show();
                 questioning.addQuestion(questions.get(currentPosition), answer.getText().toString());
                 currentPosition++;
                 if (currentPosition < questions.size()) {
@@ -202,7 +198,7 @@ public class TestActivity1 extends AppCompatActivity {
     private void endOfTest() {
         questioning.markCompleted();
         setResult(Activity.RESULT_OK, getIntent());
-        Toast.makeText(getApplicationContext(), "Test of type 1 ended, returning to home...", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Test of type 1 ended, returning to home...", Toast.LENGTH_SHORT).show();
         finish();
     }
 
@@ -246,9 +242,9 @@ public class TestActivity1 extends AppCompatActivity {
 
                     if (StoragePermission && RecordPermission) {
                         Toast.makeText(TestActivity1.this, "Permission Granted",
-                                Toast.LENGTH_LONG).show();
+                                Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(TestActivity1.this,"Permission Denied",Toast.LENGTH_LONG).show();
+                        Toast.makeText(TestActivity1.this,"Permission Denied",Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
