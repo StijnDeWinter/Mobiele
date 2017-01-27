@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which){
                             patient = input.getText().toString();
-                            Toast.makeText(getApplicationContext(), "Starting a Type 1 test...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Starting a Type 1 test...", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), TestActivity1.class);
                            /*
                             * needs to be changed to the actual name of the patient
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             patient = input.getText().toString();
-                            Toast.makeText(getApplicationContext(), "Starting a Type 2 test...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Starting a Type 2 test...", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), TestActivity2.class);
                             /*
                             * needs to be changed to the actual name of the patient
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             patient = input.getText().toString();
-                            Toast.makeText(getApplicationContext(), "Starting a Type 3 test...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Starting a Type 3 test...", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), TestActivity3.class);
                             /*
                             * needs to be changed to the actual name of the patient
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.reset:
                 //go back to main page
                 //delete all incomplete data  --> OnDestroy() still missing
-                Toast.makeText(getApplicationContext(), "Resetting", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "Resetting", Toast.LENGTH_SHORT);
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 return true;
