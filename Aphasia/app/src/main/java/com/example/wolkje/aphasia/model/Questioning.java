@@ -30,7 +30,7 @@ public class Questioning {
     private String patientName;
     private String type;
 
-    public Questioning(String patientName){
+    public Questioning(String patientName) {
         askedQuestions = new LinkedHashMap<>();
         this.patientName = patientName;
     }
@@ -42,23 +42,22 @@ public class Questioning {
     String getPatientName() {
         return patientName;
     }
-    public void addQuestion(Question question, String givenAnswer){
+
+    public void addQuestion(Question question, String givenAnswer) {
         if (question != null) {
-            if(givenAnswer != null && !givenAnswer.equals("")){
+            if (givenAnswer != null && !givenAnswer.equals("")) {
                 askedQuestions.put(question, givenAnswer);
                 type = question.getQuestion().substring(0, 5);
-            }
-            else {
+            } else {
                 Log.d(TAG, "addQuestion: something wrong with the given answer");
             }
-        }
-        else {
+        } else {
             Log.d(TAG, "addQuestion: something wrong with the question");
         }
     }
 
 
-    public void markCompleted(){
+    public void markCompleted() {
         /*
         *  questioning needs to be saved here
         *  if possible at level op the types.
@@ -68,48 +67,45 @@ public class Questioning {
         setDate(date);
         File writeLocation = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questionings");
         int amountOfFiles = 0;
-        for (File file : writeLocation.listFiles()){
+        for (File file : writeLocation.listFiles()) {
             String fileName = file.getName();
-            if (fileName.contains(patientName.replaceAll("\\s", ""))){
+            if (fileName.contains(patientName.replaceAll("\\s", ""))) {
                 amountOfFiles++;
             }
         }
-
-        try{
+        try {
             File newFile = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questionings" + File.separator + patientName.replaceAll("\\s", "") + (amountOfFiles + 1) + ".txt");
             newFile.createNewFile();
             PrintWriter writer = new PrintWriter(new FileOutputStream(newFile));
 
-            writer.println("questiontype: " +type);
-            writer.println("patientname: " +patientName);
-            writer.println("timestamp completion: " +date);
-            for (Map.Entry<Question, String> question : getAskedQuestions().entrySet()){
-                writer.println();
-                writer.println("question: " +question.getKey().getQuestion());
-                if(question.getKey().getPossibleAnswers()!= null && question.getKey().getPossibleAnswers().size() > 0) {
-                    for (int i = 0; i < question.getKey().getPossibleAnswers().size(); i++) {
-                        writer.println("possible answer " + (i+1) + ": " + question.getKey().getPossibleAnswers().get(i));
+            writer.println("questiontype: " + type);
+            writer.println("patientname: " + patientName);
+            writer.println("timestamp completion: " + date);
+                for (Map.Entry<Question, String> question : getAskedQuestions().entrySet()) {
+                    writer.println();
+                    writer.println("question: " + question.getKey().getQuestion());
+                    if (question.getKey().getPossibleAnswers() != null && question.getKey().getPossibleAnswers().size() > 0) {
+                        for (int i = 0; i < question.getKey().getPossibleAnswers().size(); i++) {
+                            writer.println("possible answer " + (i + 1) + ": " + question.getKey().getPossibleAnswers().get(i));
+                        }
                     }
+                    if (question.getKey().getAnswer() != null && !question.getKey().getAnswer().equals("")) {
+                        writer.println("correct answer: " + question.getKey().getAnswer());
+                    }
+                    writer.println("given answer: " + question.getValue());
                 }
-                if(question.getKey().getAnswer() != null && !question.getKey().getAnswer().equals("")){
-                    writer.println("correct answer: " + question.getKey().getAnswer());
-                }
-                writer.println("given answer: " + question.getValue());
-            }
+
             writer.flush();
             writer.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    private void setDate(Date date){
-        if(date !=null && date instanceof Date){
+    private void setDate(Date date) {
+        if (date != null && date instanceof Date) {
             this.completionDate = date;
-        }
-        else {
+        } else {
             Log.d(TAG, "setDate: something wrong with the date");
         }
     }

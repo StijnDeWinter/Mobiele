@@ -59,6 +59,7 @@ public class TestActivity1 extends AppCompatActivity {
     private String RandomAudioFileName = "test1";
     public static final int RequestPermissionCode = 1;
     private MediaPlayer mediaPlayer ;
+    private String writingLocation;
 
 
     @Override
@@ -85,6 +86,21 @@ public class TestActivity1 extends AppCompatActivity {
             * is at 1 since lazy ass Gijs didn't make any questions yet
             * */
             questions = new Manager(getApplicationContext()).generateQuestionList("type1", 5);
+            String patientNameStripped = getIntent().getExtras().getString("name").replaceAll("\\s", "");
+            File writeLocation = new File(Environment.getExternalStorageDirectory() + File.separator + "questions" + File.separator + "questionings");
+            int amountOfFiles = 0;
+            for (File file : writeLocation.listFiles()) {
+                String fileName = file.getName();
+                if (fileName.contains(patientNameStripped)) {
+                    amountOfFiles++;
+                }
+            }
+
+
+            Log.d("boe", "onCreate: patientname" + patientNameStripped);
+            File folder = new File(Environment.getExternalStorageDirectory() + "/questions/questionings/" + patientNameStripped + (amountOfFiles+1));
+            folder.mkdir();
+            writingLocation = (Environment.getExternalStorageDirectory() + "/questions/questionings/" + patientNameStripped + (amountOfFiles+1)).toString();
         } catch (Exception e) {
             Log.d("error: ", "onCreate: " + e.getMessage());
         }
@@ -94,8 +110,7 @@ public class TestActivity1 extends AppCompatActivity {
             public void onClick(View view) {
                 if(checkPermission()) {
                     AudioSavePathInDevice =
-                            Environment.getExternalStorageDirectory().getAbsolutePath() + "/questions/questionings/" +
-                                    CreateRandomAudioFileName(5) + "AudioRecording.3gp";
+                            writingLocation + "/question" + currentPosition + ".3gp";
 
                     MediaRecorderReady();
 
@@ -130,7 +145,7 @@ public class TestActivity1 extends AppCompatActivity {
                 mediaRecorder.reset();
                 mediaRecorder.release();
                 stopRecording.setEnabled(false);
-                submitAnswer.setEnabled(false);
+                submitAnswer.setEnabled(true);
                 startRecording.setEnabled(true);
 
                 Toast.makeText(TestActivity1.this, "Recording Completed", Toast.LENGTH_LONG).show();
