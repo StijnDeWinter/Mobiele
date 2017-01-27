@@ -224,6 +224,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.reset:
                 //go back to main page
                 //delete all incomplete data  --> OnDestroy() still missing
+                finish();
                 Toast.makeText(getApplicationContext(), "Resetting", Toast.LENGTH_SHORT);
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
